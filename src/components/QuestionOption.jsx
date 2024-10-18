@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import Icon from "./Icon";
+import { useTheme } from "../context/ThemeContext";
 
 function QuestionOption(props) {
   const [selected, setSelected] = useState(false);
-  let buttonClass = "option";
+  const [buttonClass, setButtonClass] = useState("option");
+  const {theme} = useTheme()
 
-  if (selected) {
-    if (props.isCorrect) {
-      buttonClass = "correct";
-    } else if (props.isCorrect === false) {
-      buttonClass = "incorrect";
+  useEffect(() => {
+    if (selected) {
+      if (props.isCorrect) {
+        setButtonClass("correct");
+      } else if (props.isCorrect === false) {
+        setButtonClass("incorrect");
+      }
     }
-  }
+  }, [selected, props.isCorrect]);
 
   const answerSelect = (event) => {
     setSelected(true);
@@ -22,7 +26,7 @@ function QuestionOption(props) {
   return (
     <>
       <button
-        className={buttonClass}
+        className={`option ${theme} ${buttonClass} `}
         disabled={props.disabled}
         onClick={(e) => answerSelect(e)}
       >

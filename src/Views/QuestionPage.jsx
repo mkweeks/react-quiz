@@ -2,6 +2,8 @@ import data from "../data.json";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import QuestionOption from "../components/QuestionOption";
+import ProgressBar from "../components/ProgressBar";
+import { useTheme } from "../context/ThemeContext";
 
 
 function QuestionPage() {
@@ -10,7 +12,9 @@ function QuestionPage() {
   const [question, setQuestion] = useState(0);
   const navigate = useNavigate();
   const [isCorrect, setIsCorrect] = useState(false)
+  const [width, setWidth] = useState(0)
   const [selected, setSelected] = useState(false)
+  const { theme } = useTheme()
 
   const updateScore = () => {
     if (question === 9) {
@@ -18,6 +22,7 @@ function QuestionPage() {
       localStorage.setItem("score", score)
     }
     setSelected(false)
+    setWidth(width + 10)
     setQuestion(question + 1);
   };
 
@@ -51,30 +56,28 @@ function QuestionPage() {
 
   return (
     <>
-      <div className="main">
-        <div className="container">
-          <div className="heading">
-            <p>Question {question + 1} of 10</p>
-            <h1>{currentQuestion}</h1>
-          </div>
-
-          <div className="menu">
-            {options.map((option, index) => (
-              <QuestionOption
-                key={option}
-                option={option}
-                onSelect={(selectedAnswer) => handleAnswerSelect(selectedAnswer)}
-                isCorrect={isCorrect}
-                number={index}
-                disabled={selected}
-              />
-            ))}
-            <button className="next" onClick={updateScore}>
-              Next
-            </button>
-          </div>
+      <div className="container">
+        <div className={`heading ${theme}`}>
+          <p>Question {question + 1} of 10</p>
+          <p>{currentQuestion}</p>
+          <ProgressBar width={width} />
         </div>
 
+        <div className="menu">
+          {options.map((option, index) => (
+            <QuestionOption
+              key={option}
+              option={option}
+              onSelect={(selectedAnswer) => handleAnswerSelect(selectedAnswer)}
+              isCorrect={isCorrect}
+              number={index}
+              disabled={selected}
+            />
+          ))}
+          <button className="next" onClick={updateScore}>
+            Next
+          </button>
+        </div>
       </div>
     </>
   );
