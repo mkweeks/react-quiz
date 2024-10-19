@@ -7,7 +7,7 @@ function FinalScore() {
   const { id } = useParams();
   const score = localStorage.getItem('score')
   const navigate = useNavigate();
-  const {theme} = useTheme()
+  const { theme } = useTheme()
   const icon = localStorage.getItem("icon")
 
   const newRound = () => {
@@ -20,14 +20,14 @@ function FinalScore() {
       <div className="container">
         <div className={`heading ${theme}`}>
           <h1>
-            Quiz Completed! <br />
+            <span style={{fontWeight: "normal"}}>Quiz Completed!</span> <br />
             You scored...
           </h1>
         </div>
 
         <div className="board">
           <div className={`scoreboard ${theme}`}>
-            <div style={{width: "30%", display: "flex", alignItems: "center", justifyContent: "space-around"}}><Icon image={icon} /> <h1>{id}</h1></div>
+            <div style={{ width: "8em", display: "flex", alignItems: "center", justifyContent: "space-between" }}><Icon image={icon} /> <h1>{id}</h1></div>
             <h1 style={{ fontSize: "3.5em" }}>{score}</h1>
             <p>out of 10</p>
           </div>
