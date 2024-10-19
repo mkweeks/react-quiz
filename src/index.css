@@ -2,7 +2,7 @@
   background-image: url("/assets/pattern-background-desktop-light.svg");
   background-size: cover;
   background-color: #f4f6fa;
-  height: 100svh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
