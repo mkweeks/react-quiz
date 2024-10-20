@@ -15,10 +15,15 @@
   background-color: #313e51;
 }
 
+html,
 body {
   padding: 0px;
   height: 100%;
   margin: 0px;
+}
+
+body {
+  min-height: 100vh;
 }
 
 .nav {
@@ -305,6 +310,10 @@ input:checked + .slider:before {
     height: 100%;
     background-size: cover;
     font-size: 0.75em;
+  }
+
+  body {
+    height: -webkit-fill-available;
   }
 
   .nav {
