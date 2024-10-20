@@ -312,10 +312,6 @@ input:checked + .slider:before {
     font-size: 0.75em;
   }
 
-  body {
-    height: -webkit-fill-available;
-  }
-
   .nav {
     width: 90%
   }
@@ -338,7 +334,8 @@ input:checked + .slider:before {
     margin: 0.5rem;
   }
 
-  .container {
+  .container{
+    height: 100vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
