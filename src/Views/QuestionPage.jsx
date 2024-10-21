@@ -11,32 +11,37 @@ function QuestionPage() {
   const [score, setScore] = useState(0);
   const [question, setQuestion] = useState(0);
   const navigate = useNavigate();
+  const [answer, setAnswer] = useState("")
   const [isCorrect, setIsCorrect] = useState(false)
   const [width, setWidth] = useState(0)
-  const [selected, setSelected] = useState(false)
+  const [selectedButton, setSelectedButton] = useState()
+  const [submitted, setSubmitted] = useState(false)
   const { theme } = useTheme()
 
   const updateScore = () => {
-    if (question === 9) {
-      navigate(`/${id}/score`)
-      localStorage.setItem("score", score)
-    }
-    setSelected(false)
-    setWidth(width + 10)
-    setQuestion(question + 1);
-  };
-
-  const handleAnswerSelect = (answer) => {
-    console.log(answer)
-    if (answer === correctAnswer) {
-      setIsCorrect(true)
-      setSelected(true)
-      setScore(score + 1);
+    if (submitted === true) {
+      setSubmitted(false)
+      setQuestion(question + 1);
+      setWidth(width + 10)
+      setIsCorrect(false)
+      if (question === 9) {
+        navigate(`/${id}/score`)
+        localStorage.setItem("score", score)
+      }
     }
     else {
-      setSelected(true)
-      setIsCorrect(false)
+      setSubmitted(true)
+      if (correctAnswer === answer) {
+        setScore(score + 1)
+        setIsCorrect(true)
+        console.log("correct")
+      }
     }
+  };
+
+  const handleAnswerSelect = (index) => {
+    setAnswer(options[index])
+    setSelectedButton(index)
   };
 
   useEffect(() => {
@@ -58,7 +63,7 @@ function QuestionPage() {
     <>
       <div className="container">
         <div className={`heading ${theme}`}>
-          <p style={{fontStyle: "italic"}}>Question {question + 1} of 10</p>
+          <p style={{ fontStyle: "italic" }}>Question {question + 1} of 10</p>
           <h2>{currentQuestion}</h2>
           <ProgressBar width={width} />
         </div>
@@ -66,16 +71,17 @@ function QuestionPage() {
         <div className="menu">
           {options.map((option, index) => (
             <QuestionOption
-              key={option}
+              key={index}
               option={option}
-              onSelect={(selectedAnswer) => handleAnswerSelect(selectedAnswer)}
+              onSelect={() => handleAnswerSelect(index)}
               isCorrect={isCorrect}
+              submitted={submitted}
               number={index}
-              disabled={selected}
+              selected={(selectedButton === index) && submitted} 
             />
           ))}
           <button className="next" onClick={updateScore}>
-            Next
+            {submitted === false ? "Submit Answer" : "Next"}
           </button>
         </div>
       </div>

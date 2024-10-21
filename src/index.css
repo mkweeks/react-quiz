@@ -144,6 +144,10 @@ input:checked + .slider:before {
   margin: 15px;
 }
 
+.option:focus {
+  border: 3px solid #a729f5;
+}
+
 .option.dark {
   background-color: #3b4d66;
   color: #f4f6fa;

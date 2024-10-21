@@ -3,35 +3,31 @@ import Icon from "./Icon";
 import { useTheme } from "../context/ThemeContext";
 
 function QuestionOption(props) {
-  const [selected, setSelected] = useState(false);
   const [buttonClass, setButtonClass] = useState("option");
   const { theme } = useTheme()
 
   useEffect(() => {
-    if (selected) {
-      if (props.isCorrect) {
-        setButtonClass("correct");
-      } else if (props.isCorrect === false) {
-        setButtonClass("incorrect");
-      }
+    if (props.selected) {
+      { props.isCorrect ? setButtonClass("correct") : setButtonClass("incorrect") }
     }
-  }, [selected, props.isCorrect]);
+    else {
+      setButtonClass("option")
+    }
+  }, [props.isCorrect, props.selected])
 
-  const answerSelect = (event) => {
-    setSelected(true);
-    let selectedAnswer = (event.target.textContent).substring(1)
-    props.onSelect(selectedAnswer); //refer to this line
+  const answerSelect = (number) => {
+    props.onSelect(number)
   };
 
   return (
     <>
       <button
-        className={`option ${theme} ${buttonClass} `}
-        disabled={props.disabled}
-        onClick={(e) => answerSelect(e)}
+        className={`option ${theme} ${buttonClass}`}
+        onClick={() => answerSelect(props.number)}
+        disabled={props.submitted}
       >
         <Icon icon={props.number} />
-        <p style={{width: "70%"}}>{props.option}</p>
+        <p style={{ width: "70%" }}>{props.option}</p>
       </button>
     </>
   );
