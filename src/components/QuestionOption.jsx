@@ -5,7 +5,7 @@ import { useTheme } from "../context/ThemeContext";
 function QuestionOption(props) {
   const [selected, setSelected] = useState(false);
   const [buttonClass, setButtonClass] = useState("option");
-  const {theme} = useTheme()
+  const { theme } = useTheme()
 
   useEffect(() => {
     if (selected) {
@@ -31,7 +31,7 @@ function QuestionOption(props) {
         onClick={(e) => answerSelect(e)}
       >
         <Icon icon={props.number} />
-        {props.option}
+        <p style={{width: "70%"}}>{props.option}</p>
       </button>
     </>
   );

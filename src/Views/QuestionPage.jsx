@@ -58,8 +58,8 @@ function QuestionPage() {
     <>
       <div className="container">
         <div className={`heading ${theme}`}>
-          <p>Question {question + 1} of 10</p>
-          <p>{currentQuestion}</p>
+          <p style={{fontStyle: "italic"}}>Question {question + 1} of 10</p>
+          <h2>{currentQuestion}</h2>
           <ProgressBar width={width} />
         </div>
 
