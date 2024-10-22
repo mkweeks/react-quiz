@@ -17,7 +17,7 @@ function QuestionOption(props) {
 
   const answerSelect = (number) => {
     props.onSelect(number)
-  };
+  }
 
   return (
     <>
@@ -25,6 +25,7 @@ function QuestionOption(props) {
         className={`option ${theme} ${buttonClass}`}
         onClick={() => answerSelect(props.number)}
         disabled={props.submitted}
+        tabIndex={1}
       >
         <Icon icon={props.number} />
         <p style={{ width: "70%" }}>{props.option}</p>
