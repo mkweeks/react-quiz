@@ -208,6 +208,7 @@ input:checked + .slider:before {
   width: 50%;
   display: flex;
   flex-direction: column;
+  align-items: left;
   color: #3b4d66;
 }
 
@@ -256,6 +257,7 @@ input:checked + .slider:before {
   .main {
     background-image: url("/assets/pattern-background-tablet-light.svg");
     background-repeat: no-repeat;
+    height: 100svh;
     font-size: 0.9rem;
     background-size: cover;
   }
@@ -283,7 +285,6 @@ input:checked + .slider:before {
 
   .heading {
     width: 100%;
-    height: 20%;
     display: flex;
     justify-content: center;
     font-size: 1.5rem;
@@ -307,6 +308,8 @@ input:checked + .slider:before {
   .main {
     background-image: url("/assets/pattern-background-mobile-light.svg");
     background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     font-size: 0.75em;
   }
