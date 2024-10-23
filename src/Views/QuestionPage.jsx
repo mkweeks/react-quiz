@@ -16,24 +16,33 @@ function QuestionPage() {
   const [width, setWidth] = useState(0)
   const [selectedButton, setSelectedButton] = useState(null)
   const [submitted, setSubmitted] = useState(false)
+  const [notSelected, setNotSelected] = useState('none')
   const { theme } = useTheme()
 
 
+  // check if answer variable is not empty 
   const updateScore = () => {
+    if (answer != "") {
       if (submitted === true) {
         setSubmitted(false) // reset submission status
         setQuestion(question + 1); //move to the next question
         setWidth(width + 10) // increase the width of the progress bar
         setIsCorrect(false) // reset correctness status
+        setAnswer("")
         { question === 9 ? nextPage() : null } // if last question go to next page
       }
       else {
         setSubmitted(true)
+        setNotSelected('none')
         if (correctAnswer === answer) {
           setScore(score + 1) // update score 
           setIsCorrect(true) // mark as correct
         }
       }
+    }
+    else {
+      setNotSelected("flex")
+    }
   }
 
   const handleAnswerSelect = (index) => {
@@ -85,7 +94,7 @@ function QuestionPage() {
           <button className="next" onClick={updateScore}>
             {submitted === false ? "Submit Answer" : "Next"}
           </button>
-          {/* <p style={{color: "#ee5454", display: `${notSelected}`}}></p> */}
+          <p style={{ color: "#ee5454", display: `${notSelected}` }}>Please select an answer</p>
         </div>
       </div>
     </>
