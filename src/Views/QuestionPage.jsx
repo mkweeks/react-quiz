@@ -14,35 +14,38 @@ function QuestionPage() {
   const [answer, setAnswer] = useState("")
   const [isCorrect, setIsCorrect] = useState(false)
   const [width, setWidth] = useState(0)
-  const [selectedButton, setSelectedButton] = useState()
+  const [selectedButton, setSelectedButton] = useState(null)
   const [submitted, setSubmitted] = useState(false)
   const { theme } = useTheme()
 
+
   const updateScore = () => {
-    if (submitted === true) {
-      setSubmitted(false)
-      setQuestion(question + 1);
-      setWidth(width + 10)
-      setIsCorrect(false)
-      if (question === 9) {
-        navigate(`/${id}/score`)
-        localStorage.setItem("score", score)
+      if (submitted === true) {
+        setSubmitted(false) // reset submission status
+        setQuestion(question + 1); //move to the next question
+        setWidth(width + 10) // increase the width of the progress bar
+        setIsCorrect(false) // reset correctness status
+        { question === 9 ? nextPage() : null } // if last question go to next page
       }
-    }
-    else {
-      setSubmitted(true)
-      if (correctAnswer === answer) {
-        setScore(score + 1)
-        setIsCorrect(true)
-        console.log("correct")
+      else {
+        setSubmitted(true)
+        if (correctAnswer === answer) {
+          setSelectedButton(null)
+          setScore(score + 1) // update score 
+          setIsCorrect(true) // mark as correct
+        }
       }
-    }
-  };
+  }
 
   const handleAnswerSelect = (index) => {
     setAnswer(options[index])
     setSelectedButton(index)
   };
+
+  const nextPage = () => {
+    navigate(`/${id}/score`)
+    localStorage.setItem("score", score)
+  }
 
   useEffect(() => {
   }, [score]);  // This runs when 'score' changes
@@ -77,12 +80,13 @@ function QuestionPage() {
               isCorrect={isCorrect}
               submitted={submitted}
               number={index}
-              selected={(selectedButton === index) && submitted} 
+              selected={(selectedButton === index) && submitted}
             />
           ))}
           <button className="next" onClick={updateScore}>
             {submitted === false ? "Submit Answer" : "Next"}
           </button>
+          {/* <p style={{color: "#ee5454", display: `${notSelected}`}}></p> */}
         </div>
       </div>
     </>

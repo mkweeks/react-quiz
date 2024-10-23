@@ -27,7 +27,7 @@ function FinalScore() {
 
         <div className="board">
           <div className={`scoreboard ${theme}`}>
-            <div style={{ gap: "1em", display: "flex", alignItems: "center", justifyContent: "space-evenly" }}><Icon image={icon} /> <h1>{id}</h1></div>
+            <div style={{ gap: "1em", display: "flex", alignItems: "center" }}><Icon image={icon} /> <h1>{id}</h1></div>
             <h1 style={{ fontSize: "3.5em" }}>{score}</h1>
             <p>out of 10</p>
           </div>
