@@ -30,7 +30,6 @@ function QuestionPage() {
       else {
         setSubmitted(true)
         if (correctAnswer === answer) {
-          setSelectedButton(null)
           setScore(score + 1) // update score 
           setIsCorrect(true) // mark as correct
         }
