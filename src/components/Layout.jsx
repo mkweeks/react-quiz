@@ -13,7 +13,7 @@ function Layout() {
     <>
       <div className={`main ${theme}`}>
         <NavBar changeTheme={changeTheme} />
-        <Outlet />
+        <Outlet /> 
       </div>
     </>
   )
