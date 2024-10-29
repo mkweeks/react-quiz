@@ -253,7 +253,7 @@ input:checked + .slider:before {
 @media only screen and (max-width: 768px) {
   .main {
     background-image: url("/assets/pattern-background-tablet-light.svg");
-    height: max-content;
+    min-height: 100dvh;
     background-repeat: no-repeat;
     font-size: 0.9rem;
     background-size: cover;
