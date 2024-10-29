@@ -1,13 +1,17 @@
+html,
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
 .main {
   background-image: url("/assets/pattern-background-desktop-light.svg");
-  background-size: cover;
   background-color: #f4f6fa;
-  min-height: 100svh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: "Rubik";
-  font-size: 16px;
 }
 
 .main.dark {
@@ -15,20 +19,10 @@
   background-color: #313e51;
 }
 
-html,
-body {
-  padding: 0px;
-  margin: 0px;
-}
-
-body {
-  min-height: 100vh;
-}
-
 .nav {
   width: 80%;
   height: 12%;
-  margin-bottom: 4em;
+  margin-bottom: 3em;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -119,8 +113,31 @@ input:checked + .slider:before {
 
 .container {
   width: 80%;
+  gap: 4em;
+  height: max-content;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+.heading {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  color: #3b4d66;
+}
+
+.heading.dark {
+  color: #f4f6fa;
+}
+
+.menu {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "rubik";
+  color: #3b4d66;
 }
 
 .option {
@@ -135,8 +152,13 @@ input:checked + .slider:before {
   text-align: left;
   align-items: center;
   font-family: "rubik";
-  font-size: 16px;
+  font-size: inherit;
   color: #313e51;
+}
+
+.option.dark {
+  background-color: #3b4d66;
+  color: #f4f6fa;
 }
 
 .option > .icon {
@@ -145,11 +167,6 @@ input:checked + .slider:before {
 
 .option:focus {
   border: 3px solid #a729f5;
-}
-
-.option.dark {
-  background-color: #3b4d66;
-  color: #f4f6fa;
 }
 
 .option.correct {
@@ -185,35 +202,14 @@ input:checked + .slider:before {
   color: #f4f6fa;
 }
 
-.menu {
-  width: 40%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: "rubik";
-  color: #3b4d66;
-}
-
 .board {
   width: 50%;
+  height: max-content;
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
-  color: #3b4d66;
-}
-
-.heading {
-  width: 50%;
-  display: flex;
   flex-direction: column;
-  align-items: left;
+  justify-content: center;
   color: #3b4d66;
-}
-
-.heading.dark {
-  color: #f4f6fa;
 }
 
 .scoreboard {
@@ -221,6 +217,7 @@ input:checked + .slider:before {
   background-color: white;
   height: 70%;
   border-radius: 15px;
+  margin-bottom: 2em;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -234,10 +231,10 @@ input:checked + .slider:before {
 
 .wrapper {
   width: 100%;
-  height: .5em;
+  height: 0.5em;
   background-color: white;
   border-radius: 10px;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   border: 2px solid whitesmoke;
 }
 
@@ -256,31 +253,22 @@ input:checked + .slider:before {
 @media only screen and (max-width: 768px) {
   .main {
     background-image: url("/assets/pattern-background-tablet-light.svg");
+    height: max-content;
     background-repeat: no-repeat;
-    min-height: 100dvh;
     font-size: 0.9rem;
     background-size: cover;
   }
 
   .container {
+    width: 90%;
     display: flex;
-    width: 95%;
-    min-height: 100vh;
-    justify-content: space-between;
     align-items: center;
     flex-direction: column;
   }
 
   .board {
-    width: 75%;
-    height: 80%;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .scoreboard {
     width: 100%;
-    height: 80%;
+    height: 550px;
   }
 
   .heading {
@@ -308,39 +296,31 @@ input:checked + .slider:before {
   .main {
     background-image: url("/assets/pattern-background-mobile-light.svg");
     background-repeat: no-repeat;
-    width: 100%;
     min-height: 100dvh;
     background-size: cover;
     font-size: 0.75em;
   }
 
   .nav {
-    width: 90%
+    width: 90%;
   }
 
   .heading {
     display: flex;
-    text-align: left;
-    text-wrap: wrap;
     font-size: 0.9rem;
+  }
+
+  .container {
+    gap: 0.5rem;
   }
 
   .menu {
     width: 100%;
-    height: 100%;
     display: flex;
   }
 
   .option {
     margin: 0.5rem;
-  }
-
-  .container{
-    min-height: 100vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
   }
 
   .next {
@@ -360,10 +340,6 @@ input:checked + .slider:before {
 
   .board {
     width: 100%;
-    height: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .scoreboard {
