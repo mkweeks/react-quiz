@@ -52,4 +52,4 @@ jobs:
           app-name: 'reactquiz'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7E923D6BDA4D4EE08EA7E16C1D03F1DF }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F04F04C93B3E4DD585BC9301BE222516 }}
